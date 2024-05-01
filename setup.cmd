@@ -19,7 +19,7 @@ REM Operate in pygame folder
 cd pygame
 
 REM Install dependencies
-pip install -r requirements.txt
+py -m pip install -r requirements.txt --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --proxy http://10.5.4.6:8080
 
 REM Open the folder in file explorer
 start .
