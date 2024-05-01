@@ -146,6 +146,7 @@ def main():
 
     clock = pygame.time.Clock()
     run = True
+    paused = False
 
     # Game loop
     while run:
@@ -158,17 +159,23 @@ def main():
                 pygame.quit()
 
             if event.type == pygame.KEYDOWN:
+                # Handle yellow fire button
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(
                         yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
 
+                # Handle red fire button
                 if event.key == pygame.K_RCTRL and len(red_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(
                         red.x, red.y + red.height//2 - 2, 10, 5)
                     red_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
+                
+                # Handle pause button
+                if event.key == pygame.K_SPACE:
+                    paused = not paused
 
             if event.type == RED_HIT:
                 red_health -= 1
@@ -193,12 +200,13 @@ def main():
             break
 
         # Handle spaceship movements
-        keys_pressed = pygame.key.get_pressed()
-        yellow_handle_movement(keys_pressed, yellow)
-        red_handle_movement(keys_pressed, red)
+        if not paused:
+            keys_pressed = pygame.key.get_pressed()
+            yellow_handle_movement(keys_pressed, yellow)
+            red_handle_movement(keys_pressed, red)
 
-        # Handle movement and collision of bullets
-        handle_bullets(yellow_bullets, red_bullets, yellow, red)
+            # Handle movement and collision of bullets
+            handle_bullets(yellow_bullets, red_bullets, yellow, red)
 
         # Clear screen, draw objects and update
         draw_window(red, yellow, red_bullets, yellow_bullets,
