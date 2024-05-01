@@ -189,9 +189,8 @@ def main():
             winner_text = 'Red Wins!'
 
         if winner_text != '':
-            # Display winner text for 5 seconds
             draw_winner(winner_text)
-            pygame.time.delay(5000)
+            pygame.time.delay(2000)
             break
 
         # Handle spaceship movements
