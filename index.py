@@ -2,8 +2,12 @@ import pygame
 import os
 pygame.font.init()
 pygame.mixer.init()
+pygame.display.init()
 
-WIDTH, HEIGHT = 900, 500
+# Toggle full screen
+DISPLAY_INFO = pygame.display.Info()
+WIDTH, HEIGHT = DISPLAY_INFO.current_w, DISPLAY_INFO.current_h
+# WIDTH, HEIGHT = 900, 500
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('スペースバトル')
 
