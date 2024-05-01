@@ -4,7 +4,7 @@ REM Operate in Desktop folder
 cd %USERPROFILE%\Desktop
 
 REM Download zip file from github
-curl -Lo pygame.zip "https://github.com/georgeneokq/PygameForBeginners/archive/refs/heads/main.zip"
+curl -Lko pygame.zip "https://github.com/georgeneokq/PygameForBeginners/archive/refs/heads/main.zip" --proxy http://10.5.4.6:8080
 
 REM Unzip folder
 tar -xf pygame.zip
