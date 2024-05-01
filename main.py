@@ -21,7 +21,7 @@ BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('assets', 'sound', 'bullet_f
 
 MAIN_FONT_PATH = os.path.join('assets', 'font', 'NotoSansJP-Regular.ttf')
 HEALTH_FONT = pygame.font.Font(MAIN_FONT_PATH, 40)
-WINNER_FONT = pygame.font.SysFont(MAIN_FONT_PATH, 100)
+WINNER_FONT = pygame.font.Font(MAIN_FONT_PATH, 100)
 
 FPS = 60
 MAX_HP = 2
