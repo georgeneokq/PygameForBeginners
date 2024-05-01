@@ -1,3 +1,5 @@
+@ECHO off
+
 REM Operate in Desktop folder
 cd %USERPROFILE%\Desktop
 
@@ -18,3 +20,6 @@ cd pygame
 
 REM Install dependencies
 pip install -r requirements.txt
+
+REM Open the folder in file explorer
+start .
