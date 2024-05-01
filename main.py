@@ -20,6 +20,7 @@ BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('assets', 'sound', 'bullet_f
 # BULLET_FIRE_SOUND.set_volume(0)
 
 MAIN_FONT_PATH = os.path.join('assets', 'font', 'NotoSansJP-Regular.ttf')
+
 HEALTH_FONT = pygame.font.Font(MAIN_FONT_PATH, 40)
 WINNER_FONT = pygame.font.Font(MAIN_FONT_PATH, 100)
 
@@ -51,17 +52,17 @@ SPACE = pygame.transform.scale(pygame.image.load(
 
 
 def draw_window(red: pygame.Rect, yellow: pygame.Rect,
-                red_bullets: list, yellow_bullets: list,
+                red_bullets: list[pygame.Rect], yellow_bullets: list[pygame.Rect],
                 red_health: int, yellow_health: int):
     WINDOW.blit(SPACE, (0, 0))
     pygame.draw.rect(WINDOW, BLACK, BORDER)
 
-    red_health_text = HEALTH_FONT.render(
-        f'残機: {red_health}', 1, WHITE)
     yellow_health_text = HEALTH_FONT.render(
         f'残機: {yellow_health}', 1, WHITE)
-    WINDOW.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 10))
+    red_health_text = HEALTH_FONT.render(
+        f'残機: {red_health}', 1, WHITE)
     WINDOW.blit(yellow_health_text, (10, 10))
+    WINDOW.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 10))
 
     WINDOW.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WINDOW.blit(RED_SPACESHIP, (red.x, red.y))
@@ -97,7 +98,8 @@ def red_handle_movement(keys_pressed: pygame.key.ScancodeWrapper, red: pygame.Re
         red.y += VELOCITY
 
 
-def handle_bullets(yellow_bullets: list, red_bullets: list, yellow: pygame.Rect, red: pygame.Rect):
+def handle_bullets(yellow_bullets: list[pygame.Rect], red_bullets: list[pygame.Rect],
+                   yellow: pygame.Rect, red: pygame.Rect):
     """
     Handles movements of bullets and checks for collision with enemy spaceship.
     """
